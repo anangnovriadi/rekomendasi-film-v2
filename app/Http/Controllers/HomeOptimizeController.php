@@ -91,8 +91,12 @@ class HomeOptimizeController extends Controller
             return $item;
         }); 
 
-        $command = escapeshellcmd('/Project-Ku/rekomendasi-film(python)/kf_cross.py');
-        $exec = shell_exec('python '.$command);
+        $countKOptimal = DB::table('k_optimals')->count();
+
+        if($countKOptimal < 1) {
+            $command = escapeshellcmd('/Project-Ku/rekomendasi-film(python)/kf_cross.py');
+            $exec = shell_exec('python '.$command);
+        }
 
         $getCosine = DB::select('SELECT c_products.id_film, (c_products.tf_idf / d_products.tf_idf) AS total_cosine FROM c_products JOIN d_products ON c_products.id_film = d_products.id_film ORDER by total_cosine DESC');
         $getCosine = collect($getCosine);

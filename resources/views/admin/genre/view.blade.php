@@ -37,7 +37,7 @@
                                             <div class="card">
                                                 <div class="el-card-item">
                                                     <div class="el-card-avatar el-overlay-1"> 
-                                                        <img src="https://via.placeholder.com/200" alt="user">
+                                                        <img src="{{ asset('admin/images/place.png') }}" alt="user">
                                                     </div>
                                                     <div class="el-card-content">
                                                         <h3 class="box-title">{{ $row->nama_genre }}</h3> <small>{{ $row->nama_genre }} Movie</small>

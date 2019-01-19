@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <div class="row page-titles" style="background: #1976d2 no-repeat center top">
                 <div class="col-lg-12 text-center">
-                    <h1 class="m-t-30" style="color: white;">Rekomendasi Film</h1>
+                    <h1 class="m-t-30" style="color: white;">Admin Rekomendasi Film</h1>
                     <h5 class="m-b-30" style="color: rgba(255, 255, 255, 0.65);"><i class="ti-pin"></i> Welcome to Admin Rekomendasi Film</h5>
                 </div>
             </div>
