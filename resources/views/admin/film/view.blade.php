@@ -30,26 +30,24 @@
                                     <a href="{{ route('add.film') }}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah Data Film</button>
                                     </a>
-                                    <a href="" class="pl-2">
-                                        <button type="button" class="btn waves-effect waves-light btn-success"><i class="fa fa-exchange"></i> Proses Term</button>
-                                    </a>
-                                    <a href="" class="pl-2">
+                                    <a href="{{ route('view.term') }}" class="pl-2">
                                         <button type="button" class="btn waves-effect waves-light btn-warning"><i class="fa fa-eye"></i> Lihat Term</button>
                                     </a>
                                 </div>
                             </div>
                             <div class="table-responsive m-t-10">
-                                <table id="myTable" class="table table-bordered table-striped">
+                                <table id="myTable" class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Nama Film</th>
                                             <th>Genre</th>
-                                            <th>Aktor/Aktris</th>
+                                            <th>Aktor / Aktris</th>
                                             <th>Tahun</th>
                                             <th>Produksi</th>
                                             <th>Negara</th>
                                             <th>Deskripsi</th>
+                                            <th>Rate</th>
                                             <th>Image</th>
                                         </tr>
                                     </thead>
@@ -65,6 +63,7 @@
                                             <td>{{ $films->produksi }}</td>
                                             <td>{{ $films->negara }}</td>
                                             <td>{{ $films->deskripsi_film }}</td>
+                                            <td>{{ $films->rating }}</td>                                            
                                             <td><img style="width: 40%; height: auto;" src={{ $films->image_film }} /></td>
                                         </tr>
                                         @php $no++ @endphp

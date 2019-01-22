@@ -28,6 +28,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/genre/create', 'Admin\GenreController@add')->name('add.genre');
     Route::post('/genre/create', 'Admin\GenreController@create')->name('create.genre');
 
+    Route::get('/term', 'Admin\FilmTermController@view')->name('view.term');
+
     Route::get('/user', 'Admin\UserController@index')->name('view.user');
 });
 
