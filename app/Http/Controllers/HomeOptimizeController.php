@@ -140,7 +140,9 @@ class HomeOptimizeController extends Controller
         $take = $toFrontFix->filter();
         $fil = $take->count();
 
-        DB::table('kelas_selected')->where('kelas', $kelas)->update(['jumlah' => $fil]);
+        if($countTableKelas < 1) {
+            DB::table('kelas_selected')->where('kelas', $kelas)->update(['jumlah' => $fil]);
+        }
         
         return view('front.home-film', compact('take'));
     }
@@ -212,8 +214,9 @@ class HomeOptimizeController extends Controller
             $nama_film = $tokenizer->tokenize($allFilm->nama_film);
             $genre_film = $tokenizer->tokenize($allFilm->genre);
             $aktor_aktris = $tokenizer->tokenize($allFilm->aktor_aktris);
+            $deskripsi = $tokenizer->tokenize($allFilm->deskripsi);
 
-            $mergeAll = array_merge($nama_film, $genre_film, $aktor_aktris);
+            $mergeAll = array_merge($nama_film, $genre_film, $aktor_aktris, $deskripsi);
             foreach ($mergeAll as $terms) {
                 if (strlen($terms) !== 0) {
                     $cekTerm = DB::table('terms')->where('nama_term', '=', $terms)->count();

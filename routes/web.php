@@ -29,6 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/genre/create', 'Admin\GenreController@create')->name('create.genre');
 
     Route::get('/term', 'Admin\FilmTermController@view')->name('view.term');
+    Route::get('/term/process', 'Admin\FilmTermController@term')->name('process.term');
 
     Route::get('/user', 'Admin\UserController@index')->name('view.user');
 });
@@ -42,8 +43,8 @@ Route::post('/logout', 'Auth\LogoutController@logout')->name('logout');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/register/autocomplete', 'Auth\RegisterController@fetch')->name('register.autocomplete');
-// Route::get('/home', 'HomesController@view')->name('home');
-Route::get('/home', 'HomeOptimizeController@view')->name('home');
+Route::get('/home', 'HomesController@view')->name('home');
+// Route::get('/home', 'HomeOptimizeController@view')->name('home');
 // Route::get('/home', 'HomeNController@view')->name('home');
 Route::get('/profile', 'ProfileController@view')->name('profile');
 Route::post('/profile', 'ProfileController@update')->name('edit.profile');

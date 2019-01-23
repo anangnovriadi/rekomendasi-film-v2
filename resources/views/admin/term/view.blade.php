@@ -27,7 +27,7 @@
                             <h4 class="card-title">Data Term</h4>
                             <div class="pt-2">
                                 <div class="d-flex">
-                                    <a href="" class="pl-2">
+                                    <a href="{{ route('process.term') }}" class="pl-2">
                                         <button type="button" class="btn waves-effect waves-light btn-success"><i class="fa fa-exchange"></i> Update Term</button>
                                     </a>
                                 </div>
@@ -38,60 +38,19 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama Term</th>
-                                            <th>Id Film</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>creator</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>hidrolic</td>
-                                            <td>3</td>
-                                        </tr>
+                                        @php
+                                            $no = 1;    
+                                        @endphp
+                                        @foreach ($term as $item)
+                                            <tr>
+                                                <td>{{ $no }}</td>
+                                                <td>{{ $item->nama_term }}</td>
+                                            </tr>
+                                            @php $no++; @endphp
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -103,11 +62,11 @@
                         <div class="card-body">
                             <div class="row m-t-40">
                                 <div class="col b-r text-center">
-                                    <h2 class="font-light">14</h2>
+                                    <h2 class="font-light">{{ $countTerm }}</h2>
                                     <h6>Total Term</h6>
                                 </div>
                                 <div class="col b-r text-center">
-                                    <h2 class="font-light">54</h2>
+                                    <h2 class="font-light">{{ $countFilm }}</h2>
                                     <h6>Total Film</h6>
                                 </div>
                             </div>
