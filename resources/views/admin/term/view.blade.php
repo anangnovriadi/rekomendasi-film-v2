@@ -25,13 +25,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Data Term</h4>
-                            <div class="pt-2">
+                            {{-- <div class="pt-2">
                                 <div class="d-flex">
                                     <a href="{{ route('process.term') }}" class="pl-2">
                                         <button type="button" class="btn waves-effect waves-light btn-success"><i class="fa fa-exchange"></i> Update Term</button>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="table-responsive m-t-10">
                                 <table id="myTable" class="table table-bordered table-striped">
                                     <thead>

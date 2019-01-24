@@ -37,6 +37,7 @@
                                             <th>Register</th>
                                             <th>Nama Film(Liked)</th>
                                             <th>Genre Film(Liked)</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,6 +51,13 @@
                                             <td style="width: 14%;"><span class="text-muted"><i class="fa fa-clock-o"></i> {{ $item->created_at->diffForHumans() }}</span> </td>
                                             <td>{{ $item->nama_film_liked }}</td>
                                             <td>{{ $item->genre_film_liked }}</td>
+                                            <td>
+                                                @if ($item->status == 'login')
+                                                    <a href="{{ route('view.term') }}">sedang login</a>
+                                                @else
+                                                    Belum login
+                                                @endif                                                
+                                            </td>
                                         </tr>
                                         @php $no++ @endphp
                                         @endforeach

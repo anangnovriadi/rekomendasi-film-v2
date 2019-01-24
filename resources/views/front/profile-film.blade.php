@@ -39,7 +39,8 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Genre Film(Liked)</label>
-                    <input type="text" name="genre_film_liked" class="form-control" value="{{ preg_replace('/\s+/',', ',str_replace(array("\r\n","\r","\n"),' ',trim($user->genre_film_liked))) }}" placeholder="Genre Film">
+                    {{-- <input type="text" name="genre_film_liked" class="form-control" value="{{ preg_replace('/\s+/',', ',str_replace(array("\r\n","\r","\n"),' ',trim($user->genre_film_liked))) }}" placeholder="Genre Film"> --}}
+                    <input type="text" name="genre_film_liked" class="form-control" value="{{ $user->genre_film_liked }}" placeholder="Genre Film">
                 </div>
             </div>
         </div>
@@ -62,9 +63,9 @@
     });
 </script>
 
-<script src="{{ asset('front/tagify/tagify.min.js') }}"></script>
-<script src="{{ asset('front/tagify/jQuery.tagify.min.js') }}"></script>
-<script data-name="basic">
+{{-- <script src="{{ asset('front/tagify/tagify.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('front/tagify/jQuery.tagify.min.js') }}"></script> --}}
+{{-- <script data-name="basic">
     (function(){
     // "remove all tags" button event listener
     document.querySelector('.tags--removeAllBtn')
@@ -106,7 +107,7 @@
     }
 
     })()
-</script>
+</script> --}}
 
         
 <script data-name="textarea">

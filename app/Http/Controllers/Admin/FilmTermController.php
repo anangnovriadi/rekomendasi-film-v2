@@ -14,7 +14,7 @@ class FilmTermController extends Controller
         $term = DB::select('SELECT * FROM terms');
         $countTerm = DB::table('terms')->count();
         $countFilm = DB::table('films')->count();
-        
+
         return view('admin.term.view', compact('term', 'countTerm', 'countFilm'));
     }
 
@@ -23,8 +23,14 @@ class FilmTermController extends Controller
         $film = Film::all();
         return $film;
     }
-    
+
     public function term() {
+        $this->termFilm();
+
+        return redirect()->route('view.term');
+    }
+    
+    public function termFilm() {
         set_time_limit(0);
         $getFilm = $this->getFilm();
 
@@ -77,7 +83,55 @@ class FilmTermController extends Controller
                 }
             }
         }
+    }
 
-        return redirect()->route('view.term');
+    public function toDfIdf()
+    {
+        $this->termFilm();
+        $term = DB::select('SELECT * FROM terms');
+
+        foreach ($term as $terms) {
+            $id_term = $terms->id;
+            $df = DB::table('tf_idfs')->where('id_term', '=', $id_term)->count();
+            $jmlFilm = DB::table('films')->count();
+            $jmlFilm = $jmlFilm + 1;
+            $idf = log($jmlFilm / $df);
+
+            DB::table('terms')->where('id', $id_term)->update(['df' => $df, 'idf' => $idf]);
+        }
+    }
+
+    public function toTfIdf()
+    {
+        $this->toDfIdf();
+        $tfIdf = DB::select('SELECT * FROM tf_idfs');
+
+        foreach ($tfIdf as $tfIdfs) {
+            $id_terms = $tfIdfs->id_term;
+            $tf = $tfIdfs->tf;
+            $term = DB::table('terms')->where('id', $id_terms)->get();
+
+            foreach ($term as $terms) {
+                $idf = $terms->idf;
+                $tfIdf = $tf * $idf;
+                DB::table('tf_idfs')->where('id_term', $id_terms)->where('tf', $tf)->update(['tf_idf' => $tfIdf]);
+            }
+        }
+    }
+
+    // update data tf-idf-kuadrat ke masing - masing id_term
+    public function toTfIdfKuadrat()
+    {
+        $this->toTfIdf();
+        $tfIdf = DB::select('SELECT * FROM tf_idfs');
+
+        foreach ($tfIdf as $tfIdfs) {
+            $tfIdf = $tfIdfs->tf_idf;
+            $id_term = $tfIdfs->id_term;
+            $tf = $tfIdfs->tf;
+            $tfIdfKuadrat = $tfIdf * $tfIdf;
+
+            DB::table('tf_idfs')->where('id_term', $id_term)->where('tf', $tf)->update(['tf_idf_kuadrat' => $tfIdfKuadrat]);
+        }
     }
 }

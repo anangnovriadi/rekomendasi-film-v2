@@ -30,9 +30,9 @@
                                     <a href="{{ route('add.film') }}">
                                         <button type="button" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah Data Film</button>
                                     </a>
-                                    <a href="{{ route('view.term') }}" class="pl-2">
+                                    {{-- <a href="{{ route('view.term') }}" class="pl-2">
                                         <button type="button" class="btn waves-effect waves-light btn-warning"><i class="fa fa-eye"></i> Lihat Term</button>
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                             <div class="table-responsive m-t-10">

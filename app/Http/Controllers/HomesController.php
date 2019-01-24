@@ -97,7 +97,10 @@ class HomesController extends Controller
 
         $getCosine = DB::select('SELECT c_products.id_film, (c_products.tf_idf / d_products.tf_idf) AS total_cosine FROM c_products JOIN d_products ON c_products.id_film = d_products.id_film ORDER by total_cosine DESC');
         $getCosine = collect($getCosine);
-        $getCosine = $getCosine->take(10); // K-Optimal
+        $getKoptimalDesc = DB::select('SELECT k FROM `k_optimals` ORDER BY accuracy_k DESC, k DESC LIMIT 1');
+        
+        $accuracyOne = $getKoptimalDesc[0]->k;
+        $getCosine = $getCosine->take($accuracyOne); // K-Optimal
         
         $toFront = $getCosine->map(function($item) {
             $getCosineFix = DB::select("SELECT * FROM films WHERE id = '$item->id_film'");
@@ -115,6 +118,8 @@ class HomesController extends Controller
         } else {
             $kelas = 't';
         }
+
+        // dd($sel);
 
         $jumlah = $sel[0]->jum;
         $countTableKelas = DB::table('kelas_selected')->count();

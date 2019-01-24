@@ -40,4 +40,10 @@ class LoginController extends Controller
     public function showLoginForm() {
         return view('front.auth.login');
     }
+
+    protected function authenticated() {
+        $user = auth()->user();
+        $user->status = 'login';
+        $user->save(); 
+    }
 }
