@@ -266,7 +266,7 @@ class HomesController extends Controller
             $id_term = $terms->id;
             $df = DB::table('tf_idfs')->where('id_term', '=', $id_term)->count();
             $jmlFilm = DB::table('films')->count();
-            $jmlFilm = $jmlFilm + 1;
+            // $jmlFilm = $jmlFilm + 1;
             $idf = log($jmlFilm / $df);
 
             DB::table('terms')->where('id', $id_term)->update(['df' => $df, 'idf' => $idf]);

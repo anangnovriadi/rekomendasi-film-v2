@@ -80,7 +80,7 @@ class KnnController extends Controller
         $fn = abs($kOptimal[0] - $tp);
         $fp = abs($kOptimal[0] - $fn);
         // $tn = $totalFilm - $fp;
-        $tn = 100 - $fn;
+        $tn = $totalFilm - $fn;
 
         $precission = $tp / ($tp + $fp);
         $recall = $tp / ($tp + $fn);
