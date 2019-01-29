@@ -104,10 +104,11 @@ class HomesController extends Controller
         
         $toFront = $getCosine->map(function($item) {
             $getCosineFix = DB::select("SELECT * FROM films WHERE id = '$item->id_film'");
+            // $getCosineFix = DB::select("");
 
             return $getCosineFix[0];
         });
-
+        // dd($toFront);
         $pl = $toFront->pluck('id');
         $pl = collect($pl)->implode(',');
         $sel = DB::select("SELECT SUM(IF(kelas='y',1,0)) AS yes, SUM(IF(kelas='t',1,0)) AS no, COUNT(*) AS jum FROM films WHERE id IN ($pl)");
@@ -134,8 +135,9 @@ class HomesController extends Controller
             $kelas = $kelas->pluck('kelas');
             $kelas = $kelas->implode('kelas', '');
 
-            $KnnFix = DB::select("SELECT * FROM films WHERE id = '$item->id_film' AND kelas = '$kelas'");
-
+            // $KnnFix = DB::select("SELECT * FROM films WHERE id = '$item->id_film'");
+            $KnnFix = DB::select("SELECT image_film, films.id, c_products.tf_idf AS tf_idf_c_products, d_products.tf_idf AS tf_idf_d_products, nama_film, rating, genre, deskripsi_film, nama_slug, kelas FROM films INNER JOIN c_products ON films.id = c_products.id_film INNER JOIN d_products ON films.id = d_products.id WHERE films.id = '$item->id_film' AND kelas = '$kelas'");
+            
             return $KnnFix;
         });
 

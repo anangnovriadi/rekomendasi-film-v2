@@ -26,6 +26,15 @@
                         <a href="/detail-film/{{ $key[0]->nama_slug }}" class="btn btn-primary">Read more</a>
                     </div>
                 </div>
+                <div class="alert alert-primary mt-2" role="alert">
+                    Dot Product : {{ $key[0]->tf_idf_d_products }}
+                </div>
+                <div class="alert alert-primary mt-2" role="alert">
+                    Cross Product : {{ $key[0]->tf_idf_c_products }}
+                </div>
+                <div class="alert alert-primary mt-2" role="alert">
+                    Hasil Cosine : {{ $key[0]->tf_idf_d_products / $key[0]->tf_idf_c_products }}
+                </div>
             </div>
             @endforeach
         </div>
